@@ -1,0 +1,54 @@
+<div class="modal fade" id="editNosotros" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header align-items-center">
+          <h5 class="modal-title">Editar Datos de miembro del personal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row justify-content-center py-4">
+                <label for="submitImageEn">
+                    <img [src]="getImage()" class="img-profile-round rounded-circle">
+                </label>
+                <input class="d-none" type="file" id="submitImageEn" (change)="onImageChange($event.target.files)" >
+            </div>
+            <form [formGroup]="workerForm" >
+              <div class="row">
+                <div class="col-12 ">
+                  <div class="form-group">
+                    <label class="form-control-label">Nombre</label>
+                    <input formControlName="name" type="text" class="form-control" placeholder="Nombre">
+                  </div>
+                </div>
+                <div class="col-12 ">
+                  <div class="form-group">
+                    <label class="form-control-label">Cargo</label>
+                    <input formControlName="office" type="text" class="form-control" placeholder="Ej: Terapeuta/Ventas">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 ">
+                  <div class="form-group">
+                    <label class="form-control-label">Cuenta de Instagram</label>
+                    <input formControlName="instagram" type="text" class="form-control" placeholder="Ej: cuenta_de.instagram">
+                  </div>
+                </div>
+                <div class="col-12 ">
+                  <div class="form-group">
+                    <label class="form-control-label">Descripción</label>
+                    <input formControlName="description" type="text" class="form-control" placeholder="Descripción extendida">
+                  </div>
+                </div>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="submitUpload()" class="btn btn-primary" data-dismiss="modal">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>

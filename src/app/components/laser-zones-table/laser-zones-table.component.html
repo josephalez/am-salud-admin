@@ -1,0 +1,39 @@
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr>
+          <th></th>
+          <th>Nombre</th>
+          <th>precio completo</th>
+          <th>precio retoque</th>
+          <th>tiempo completo</th>
+          <th>tiempo retoque</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let zone of zones; let i=index;">
+          <td class="table-actions">
+            <span (click)="delete(zone.id)" class="table-action table-action-delete" 
+              data-toggle="tooltip" title="Eliminar Zona">
+              <i class="fas fa-trash"></i>
+            </span>
+          </td>
+          <td>
+            <b>{{zone.name}}</b>
+          </td>
+          <td>
+            {{zone.completo}}
+          </td>
+          <td>
+            {{zone.retoque}}
+          </td>
+          <td>
+            {{getCountMinutes(zone.time_completo)}}
+          </td>
+          <td>
+            {{getCountMinutes(zone.time_retoque)}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,0 +1,123 @@
+<div class="modal fade" id="storeProduct" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header align-items-center">
+          <h5 class="modal-title">Nuevo producto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="productForm" >
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-control-label">Nombre</label>
+                <input formControlName="name" type="text" class="form-control" placeholder="Nombre">
+              </div>
+            </div>
+            
+
+            <div class="col-12">
+                <div class="form-group">
+                  <label>Categorías</label>
+                  <select (change)="selectCategory($event.target.value)" name="category" class="form-control">
+                      <option value="" hidden selected>Seleccionar</option>
+                      <option *ngFor="let category of filterCategories(); let categoryIndex=index" 
+                        [value]="categoryIndex" >{{category.name}}</option>
+                  </select>
+                </div>
+            </div>
+
+            <div class="col-12 mb-3">
+              
+              <h5 class="h3 title font-weight-light mb-0 pb-2">
+                <span class="d-block mb-1">Categorías seleccionadas</span>
+              </h5>
+              <div
+              class="col-12"
+              >
+                <div
+                  class="custom-control custom-checkbox mb-3"
+                  *ngFor="let sCategory of selectedCategories; let selectedIndex=index;"
+                  (click)="quitCategory(selectedIndex)"
+                >
+                  <input
+                    [checked]="true"
+                    type="checkbox"
+                    class="custom-control-input"
+                  />
+                  <label class="custom-control-label">{{sCategory.name}}</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 d-flex flex-column align-items-center mb-4">
+                <div class="form-group">
+                    <label>Imgen principal</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" for="pic-1" lang="es" (change)="onImageChange($event.target.files)" >
+                        <label class="custom-file-label" for="pic-1" >Seleccione un archivo</label>
+                    </div>
+                </div>
+                <div class="col-8" *ngIf="preview1">
+                    <img [src]="preview1" alt="preview1" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="col-12 d-flex flex-column align-items-center mb-4">
+                <div class="form-group">
+                    <label>Imagen secundaria</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" for="pic-2" lang="es" (change)="onImageChange($event.target.files,1)" >
+                        <label class="custom-file-label" for="pic-2" >Seleccione un archivo</label>
+                    </div>
+                </div>
+                <div class="col-8" *ngIf="preview2">
+                    <img [src]="preview2" alt="preview2" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="col-12 d-flex flex-column align-items-center mb-4">
+                <div class="form-group">
+                    <label>Imgen extra</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" for="pic-3" lang="es" (change)="onImageChange($event.target.files,2)" >
+                        <label class="custom-file-label" for="pic-3" >Seleccione un archivo</label>
+                    </div>
+                </div>
+                <div class="col-8" *ngIf="preview3">
+                    <img [src]="preview3" alt="preview3" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-control-label">Precio</label>
+                <input formControlName="price" type="number" min="0" oninput="validity.valid||(value='');" class="form-control" placeholder="Precio">
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-control-label">Descripción</label>
+                <textarea formControlName="description" rows="3" class="form-control" placeholder="Descripción"></textarea>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-control-label">Unidades disponibles</label>
+                <input formControlName="stock" type="number" min="0" oninput="validity.valid||(value='');" class="form-control" placeholder="Stock">
+              </div>
+            </div>
+
+          </form>          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="addProduct()" class="btn btn-primary" data-dismiss="modal">Añadir Producto</button>
+        </div>
+      </div>
+    </div>
+  </div>

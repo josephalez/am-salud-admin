@@ -1,0 +1,43 @@
+<div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+      <tr>
+        <th *ngIf="!credit" ></th>
+        <th *ngIf="credit" >Añadir</th>
+        <th>Usuario</th>
+        <th>Nombre Completo</th>
+        <th>Correo Electrónico</th>
+        <th>Género</th>
+        <th>Número telefónico</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i=index;">
+        <td class="table-actions text-center">
+          <span *ngIf="!credit" (click)="delete(user.id)" class="product-see table-action table-action-delete" data-toggle="tooltip" title="Eliminar Usuario">
+            <i class="fas fa-trash"></i>
+          </span>
+          <span *ngIf="credit" (click)="setUser(i)" class="product-see table-action table-action-info" data-toggle="modal" data-target="#rechargeCredit">
+            <i class="fas fa-dollar-sign"></i>
+          </span>
+        </td>
+        <td class="table-user">
+          <img [src]="getImage(i)" class="avatar rounded-circle mr-3">
+          <b>{{user.username}}</b>
+        </td>
+        <td>
+          <b>{{user.name+' '+user.last_name}}</b>
+        </td>
+        <td>
+          {{user.email}}
+        </td>
+        <td>
+          {{user.gender=='male'?"Masculino":user.gender=='female'?'Femenino':'Indefinido'}}
+        </td>
+        <td>
+          {{user.phone}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

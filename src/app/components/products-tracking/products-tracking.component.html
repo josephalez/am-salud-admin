@@ -1,0 +1,37 @@
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr>
+          <th>Detalles</th>
+          <th>Usuario</th>
+          <th>Código del pedido</th>
+          <th>Tipo de pago</th>
+          <th>Monto total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidos; let i=index;">
+          <td class="table-actions text-center">
+            <span (click)="selectPedido(i)" class="product-see table-action table-action-info" 
+              data-toggle="modal" data-target="#productListDetails">
+                <i class="fas fa-eye"></i>
+            </span>
+          </td>
+          <td>
+            <b>{{pedido.user_name}}</b>
+          </td>
+          <td>
+            {{pedido.pedido_code}}
+          </td>
+          <td>
+            {{pedido.pago_name}}
+          </td>
+          <td>
+            {{pedido.total}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <detailed-pedido [pedido]="selectedPedido" (reload)="emitReload()" ></detailed-pedido>

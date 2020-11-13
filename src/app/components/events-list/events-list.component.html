@@ -1,0 +1,40 @@
+<div class="modal fade" id="eventsListModal" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header align-items-center">
+        <h5 class="modal-title">Citas agendadas para este día</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul *ngIf="events.length" class="list-group list-group-flush list my--3">
+          <li class="list-group-item px-0" *ngFor="let event of events; let i=index;" >
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <!-- Avatar -->
+                <div class="avatar rounded-circle">
+                  <img class="avatar-img" alt="Perfil Usuario" [src]="getProfilePic(i)">
+                </div>
+              </div>
+              <div class="col ml--2">
+                <h3 class="mb-1">{{event.user_name}}</h3>
+                <h5 class="mb-0">{{parseHour(i)}}</h5>
+                <span [ngClass]="{'text-success':!event.canceled&&event.confirmed,'text-danger':event.canceled&&!event.confirmed, 'text-info':!event.canceled&&!event.confirmed}"
+                >● </span><small>{{event.canceled?' Cancelada':event.confirmed?' Confirmada':' Pendiente'}}</small>
+              </div>
+              <div class="col-auto py-2">
+                <button *ngIf="!event.confirmed&&!event.canceled" data-dismiss="modal" type="button" (click)="cancel(i)" class="btn btn-sm btn-primary">Cancelar</button>
+                <button *ngIf="!event.confirmed&&!event.canceled" data-dismiss="modal" type="button" (click)="confirm(i)" class="btn btn-sm btn-success">Confirmar</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <h2 *ngIf="!events.length" class="text-center p-5" > No hay citas programadas para este día</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

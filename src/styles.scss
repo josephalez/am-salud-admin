@@ -1,0 +1,109 @@
+/* You can add global styles to this file, and also import other style files */
+
+.img-profile-round{
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  transition: all .15s ease;
+  border: 3px solid #ddd;
+}
+
+.img-profile-round:hover{
+  transform: scale(1.1);
+}
+
+.product-see{
+  font-size:24px;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  animation-duration: .4s
+}
+
+@-webkit-keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.fadeOutUp {
+  -webkit-animation-name: fadeOutUp;
+  animation-name: fadeOutUp;
+  animation-duration: .4s
+}
+
+.modal{
+  transition: all .3s;
+}
+
+ams-calendar{
+  width:100%;
+}
+
+.avatar-img{
+  width: 100%;
+  height: 100%;
+}
+
+@media(max-width:400px){
+  [data-notify=container]{
+    right: 0!important;
+    left: 0!important;
+  }
+}
+
+.chart-container{
+  position: relative; 
+  height:100%;
+  widows:100%;
+  padding:.5rem;
+}

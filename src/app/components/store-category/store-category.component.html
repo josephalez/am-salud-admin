@@ -1,0 +1,51 @@
+<div class="modal fade" id="storeCategory" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header align-items-center">
+          <h5 class="modal-title">Nueva Categoría</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="categoryForm" >
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-control-label">Nombre</label>
+                <input formControlName="name" type="text" class="form-control" placeholder="Nombre">
+              </div>
+            </div>
+
+            <div class="col-12">
+                <div (click)="setId()" class="custom-control custom-checkbox mb-3">
+                  <input [checked]="is_sub" type="checkbox" class="custom-control-input">
+                  <label class="custom-control-label">Esta categoría será una Sub Categoría</label>
+                </div>    
+            </div>
+            <div class="col-12" *ngIf="is_sub" >
+                <div class="form-group">
+                  <label>Seleccione la Categoría:</label>
+                  <select formControlName="sub_id" class="form-control" placeholder="Seleccionar">
+                      <option *ngFor="let category of categories;" [value]="category.id" >{{category.name}}</option>
+                  </select>
+                </div>
+            </div>
+            
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-control-label">Descripción</label>
+                <textarea formControlName="description" rows="3" class="form-control" placeholder="Descripción"></textarea>
+              </div>
+            </div>
+
+          </form>          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button (click)="saveCategory()" type="button" class="btn btn-primary" data-dismiss="modal">Añadir Categoría</button>
+        </div>
+      </div>
+    </div>
+  </div>

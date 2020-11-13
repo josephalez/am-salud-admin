@@ -1,0 +1,44 @@
+<div class="modal fade" id="editCategory" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header align-items-center">
+          <h5 class="modal-title">Editar Categoría</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editCategoryForm" >
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-control-label">Nombre</label>
+                <input formControlName="name" type="text" class="form-control" placeholder="Nombre">
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-control-label">Descripción</label>
+                <textarea formControlName="description" placeholder="Descripción"
+                 class="form-control" rows="3"></textarea>
+              </div>
+            </div>
+
+            <div class="col-12" >
+                <div class="form-group">
+                  <label>Seleccione la Categoría a la que pertenece:</label>
+                  <select formControlName="sub_id" class="form-control" placeholder="Seleccionar">
+                      <option value="">Ninguna</option>
+                      <option *ngFor="let category of categories;" [value]="category.id" >{{category.name}}</option>
+                  </select>
+                </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="updateCategory()" class="btn btn-primary" data-dismiss="modal">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,47 @@
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr>
+          <th>Eliminar</th>
+          <th>Editar</th>
+          <th>Nombre</th>
+          <th>Puesto</th>
+          <th>Instagram</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let worker of personal; let i=index;">
+          
+          <td class="table-actions text-center">
+            <span (click)="delete(worker.id)" class="table-action table-action-delete product-see"
+              data-toggle="tooltip" title="Eliminar">
+              <i class="fas fa-trash"></i>
+            </span>
+          </td>
+          
+          <td class="table-actions text-center">
+            <span (click)="select(i)" class="table-action table-action-delete product-see"
+              data-toggle="modal" data-target="#editNosotros" >
+              <i class="fas fa-edit"></i>
+            </span>
+          </td>
+          <td class="table-user">
+            <img [src]="getImage(i)" class="avatar rounded-circle mr-3">
+            <b>{{worker.name}}</b>
+          </td>
+          <td>
+            <b>{{worker.office}}</b>
+          </td>
+          <td>
+            <b>{{worker.instagram}}</b>
+          </td>
+          <td>
+            <b>{{worker.description}}</b>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-nosotros-edit [user]="selectedWorker" (reload)="emitReload()" ></app-nosotros-edit>

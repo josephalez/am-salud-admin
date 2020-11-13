@@ -1,0 +1,82 @@
+<app-layout>
+
+    <div slot="header" class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Servicios</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-box"></i></a></li>
+                  <li class="breadcrumb-item"><a href="#">Gestión de servicios</a></li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div slot="content" class="container-fluid mt--6">
+      
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-9">
+                        <!-- Title -->
+                        <h5 class="h3 mb-0 text-left">Servicios disponibles</h5>                        
+                    </div>
+                    <div class="col-3 text-right">
+                        <button data-toggle="modal" data-target="#newServiceModal" class="btn btn-icon btn-success">
+                            <span class="btn-inner--text d-none d-md-inline-block">Nuevo Servicio</span>
+                            <span class="btn-inner--icon"><i class="fas fa-plus" ></i></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+
+                  <div *ngFor="let service of services; let i=index;" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                      <div class="card">
+                          <!-- Card header -->
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <!-- Title -->
+                                    <h5 class="h3 mb-0">{{service.name}}</h5>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <button (click)="deleteService(i)" class="btn btn-sm btn-primary"><i class="fas fa-trash" ></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card image -->
+                        <!-- List group -->
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <p class="card-text mb-4">{{service.description}}</p>
+                            <button data-toggle="modal" (click)="selectService(i)" data-target="#editServiceModal" 
+                            class="btn btn-icon btn-info">
+                                <span class="btn-inner--text">Editar</span>
+                                <span class="btn-inner--icon"><i class="fas fa-edit"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+
+    
+</app-layout>
+
+<edit-service [service]="selectedService" (successEdit)="refreshServices()" ></edit-service>
+<new-service (newSuccess)="refreshServices()" ></new-service>

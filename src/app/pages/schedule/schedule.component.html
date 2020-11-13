@@ -1,0 +1,125 @@
+<app-layout>
+
+    <div slot="header" class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Horario</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-calendar"></i></a></li>
+                  <li class="breadcrumb-item"><a href="#">Mi Horario</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Personalización</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div slot="content" class="container-fluid mt--6">
+      
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-9">
+                        <!-- Title -->
+                        <h5 class="h2 mb-0 text-left">Personalizar mi horario</h5>                        
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="workerPriceForm" *ngIf="area==1">
+                <div class="row" >
+                  <div class="col-12 col-md-6" >
+                    <div class="form-group">
+                      <label class="form-control-label">Precio por sesión ($) </label>
+                      <input formControlName="tarifa" type="number" class="form-control" placeholder="100">
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Duración de la sesión(minutos)</label>
+                      <input formControlName="minutes" type="number" class="form-control" placeholder="30">
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6" >
+                    <div class="form-group">
+                      <label class="form-control-label">Precio de la primera sesión ($) </label>
+                      <input formControlName="tarifa_primera" type="number" class="form-control" placeholder="100">
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Duración de la primera sesión(minutos)</label>
+                      <input formControlName="minutes_primera" type="number" class="form-control" placeholder="30">
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row mb-4">
+                  
+                  <button (click)="storeWorkerPrice()" class="ml-5 btn btn-info">
+                    Guardar datos
+                  </button>
+                  
+                </div>
+              </form>
+              
+              <div class="row">
+
+                  <div *ngFor="let day of days;" class="col-12 col-md-6 col-xl-4">
+                      <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <h5 class="h2 mb-0">{{day.name}}</h5>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <button (click)="cleanDay(day.number)" class="btn btn-sm btn-icon btn-primary">
+                                        <span class="btn-inner--text">
+                                            Limpiar
+                                        </span>
+                                        <span class="btn-inner--icon">
+                                            <i class="fas fa-ban" ></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                              <div class="col">
+                                <span class="h4 text-muted">Hora de nicio:</span>
+                                <span class="d-block h4">{{day.start?day.start:'No Establecida'}}</span>
+                              </div>
+                            </div>
+                            <div class="row py-2 pb-4">
+                              <div class="col">
+                                <span class="h4 text-muted">Hora de finalización:</span>
+                                <span class="d-block h4">{{day.end?day.end:'No Establecida'}}</span>
+                              </div>
+                            </div>
+                            <button data-toggle="modal" (click)="selectDay(day.number)" data-target="#submitScheduleModal" 
+                            class="btn btn-icon btn-block btn-success">
+                                <span class="btn-inner--text">Editar</span>
+                                <span class="btn-inner--icon"><i class="fas fa-clock"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+
+</app-layout>
+
+<edit-schedule [hour]="selectedHour" [day]="selectedDay" (successEdit)="fetchSchedules()" ></edit-schedule>

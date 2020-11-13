@@ -1,0 +1,41 @@
+<div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+      <tr>
+        <th>Asignado</th>
+        <th>Servicio</th>
+        <th>Porcentaje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let price of prices; let i=index;">
+        <!--
+        <td class="table-actions text-center">
+            <span (click)="selectUser(i)" class=" product-see table-action table-action-info" data-target="#pricesListModal" data-toggle="modal">
+                <i data-toggle="tooltip" title="Ver Reservaciones" class="fas fa-eye"></i>
+            </span>
+        </td>
+        -->
+        <td *ngIf="price.client" class="table-user" >
+          <!--
+            <img [src]="getImage(i)" class="avatar rounded-circle mr-3">
+          -->
+          <b>{{price.client.name+' '+price.client.last_name}}</b>
+        </td>
+        <td *ngIf="!price.client" class="table-user" >
+          <b>Asignado al Servicio en General</b>
+        </td>
+        <td>
+          {{price.service.name}}
+        </td>
+        <td>
+          {{price.price+' '}}%
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--
+  <prices-list [prices]="selectedPrices"></prices-list>
+-->

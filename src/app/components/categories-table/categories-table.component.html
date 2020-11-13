@@ -1,0 +1,30 @@
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr>
+          <th>Editar</th>
+          <th>Nombre</th>
+          <th>Subcategoría de:</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories; let i=index;">
+          <td class="table-actions">
+              <span (click)="selectCategory(category)" class="product-see table-action table-action-info" data-toggle="modal" data-target="#editCategory">
+                  <i class="fas fa-edit"></i>
+              </span>
+          </td>
+          <td>
+            {{category.name}}
+          </td>
+          <td>
+            {{category.sub_category?category.sub_category.name:'Ninguna'}}
+          </td>
+          <td>
+            {{category.description}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

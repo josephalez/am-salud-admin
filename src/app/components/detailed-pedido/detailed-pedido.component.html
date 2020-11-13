@@ -1,0 +1,64 @@
+<div class="modal fade" id="productListDetails" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" *ngIf="pedido">
+      <div class="modal-header align-items-center pb-0">
+        <h5 class="modal-title">Detalles del pedido {{pedido.pedido_code}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="h3 title mb-0 pb-2">
+          <span class="d-block mb-1">Estatus del pedido</span>
+          <small class="h2 font-weight-light" 
+          [ngClass]="{
+            'text-success':pedido.status!=0&&pedido.sent!=0, 
+            'text-danger':pedido.status==0&&pedido.sent==0,
+            'text-warning':pedido.status!=0&&pedido.sent==0
+          }">
+            {{pedido.status!=0?(pedido.sent!=0?"Pagado y Recibido":"Pagado a falta de envío"):"No Pagado"}}
+          </small>
+        </h5>
+        <h5 class="h3 title mb-0 pb-2">
+          <span class="d-block mb-1">Tipo de envío del pedido</span>
+          <small class="h2 font-weight-light">{{pedido.domicilio!=0?"A Domicilio":"En Sucursal"}}</small>
+        </h5>
+        <h5 *ngIf="pedido.pago_stripe_id" class="h3 title mb-0 pb-2">
+          <span class="d-block mb-1">Id de pago por Stripe</span>
+          <small class="h2 font-weight-light">{{pedido.pago_stripe_id}}</small>
+        </h5>
+        <ul class="list-group list-group-flush list my-2" *ngIf="pedido.calle&&pedido.domicilio==1" >
+          <h5 class="h3 title mb-0 ">Detalles de la dirección de envío</h5>
+          <li class="list-group-item px-0 border-0">
+            <div class="row px-1 align-items-center">
+              <div class="col-12 px-2">
+                <h4 class="mb-2" ><b>Calle: </b> {{pedido.calle}}</h4>
+                <h4 class="mb-2" *ngIf="pedido.municipio" ><b>Municipio: </b> {{pedido.municipio}}</h4>
+              </div>
+            </div> 
+          </li>
+        </ul>
+        <ul class="list-group list-group-flush list my-2" *ngIf="pedido.detalle&&pedido.detalle.length" >
+          <li class="list-group-item px-0" *ngFor="let detail of pedido.detalle; let i=index;" >
+            <div class="row px-1 align-items-center">
+              <div class="col-12 px-2">
+                <h4 class="mb-2"><b>Producto: </b> {{detail.product_name}}</h4>
+                <h4 class="mb-2"><b>Cantidad: </b> {{detail.cantidad+' Unidades'}}</h4>
+                <h4 class="mb-2"><b>Precio del producto: </b> {{'$ '+detail.price}}</h4>
+              </div>
+            </div> 
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+        <button *ngIf="pedido.status==0" type="button" class="btn btn-primary" 
+        data-dismiss="modal" (click)="confirm()"
+        >Confirmar Pago</button>
+        <button *ngIf="pedido.status==1&&pedido.sent==0" type="button" class="btn btn-primary" 
+        data-dismiss="modal" (click)="confirm()"
+        >Confirmar Envío Recibido</button>
+      </div>
+    </div>
+  </div>
+</div>

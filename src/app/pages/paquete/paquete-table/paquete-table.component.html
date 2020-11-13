@@ -1,0 +1,49 @@
+<div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+      <tr>
+        <th></th>
+        <th>Nombre</th>
+        <th>Saldo del paquete</th>
+        <th>precio paquete</th>
+        <th>Moneda virtual</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paquete of paquetes; let i = index">
+        <td class="table-actions">
+          <span
+            (click)="delete(paquete.id)"
+            class="table-action table-action-delete"
+            data-toggle="tooltip"
+            title="Eliminar Zona"
+          >
+            <i class="fas fa-trash"></i>
+          </span>
+        </td>
+        <td>
+          <b>{{ paquete.nombre }}</b>
+        </td>
+        <td>
+          {{ getTotal(paquete) }} puntos
+        </td>
+        <td>
+          ${{ paquete.points }}
+        </td>
+        <td>
+          {{ paquete.moneda.name }}
+        </td>
+        <td>
+          <button
+            class="btn "
+            [ngClass]="paquete.status == 1 ? 'btn-success' : 'btn-default'"
+            (click)="status(paquete.id, paquete)"
+          >
+            {{ paquete.status == 1 ? "activo" : "inactivo" }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

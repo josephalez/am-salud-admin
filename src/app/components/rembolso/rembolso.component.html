@@ -1,0 +1,76 @@
+<div
+  class="modal fade"
+  id="rembolso"
+  tabindex="-1"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header align-items-center">
+        <h5 class="modal-title">Editar detalles de la reserva</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="reservation">
+        <h3 class="card-title mb-3">Zonas agendadas</h3>
+        <div
+          *ngFor="let zona of reservation.zonas; let i = index"
+          class="col-12"
+        >
+          <div
+            (click)="sacar(zona)"
+            class="custom-control custom-checkbox mb-3"
+            *ngIf="zona.status == 0"
+          >
+            <input
+              [checked]="true"
+              type="checkbox"
+              class="custom-control-input"
+            />
+            <label class="custom-control-label">{{ zona.name }}</label>
+          </div>
+        </div>
+
+        <h3 class="card-title my-3">Zonas descartadas</h3>
+        <ul class="list-group list-group-flush">
+          <ng-container
+            *ngFor="let zone of reservation.zonas; let zoneIndex = index"
+          >
+            <li class="list-group-item pr-4" *ngIf="zone.status != 0">
+              {{ zone.name }}
+              <i
+                class="fas fa-delete float-right"
+                (click)="restore(zoneIndex)"
+              ></i>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Cerrar
+        </button>
+        <!--         <button
+          type="button"
+          (click)="edit()"
+          class="btn btn-primary-outline"
+          data-dismiss="modal"
+        >
+          Editar reserva
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<app-aceptar
+  [zone]="selectzone"
+  *ngIf="selectzone"
+  (accion)="hacer($event)"
+></app-aceptar>

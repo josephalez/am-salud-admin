@@ -1,0 +1,27 @@
+<div class="modal fade" id="pricesListModal" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header align-items-center">
+          <h5 class="modal-title">Precios especiales otorgados a este usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul class="list-group list-group-flush list my--3">
+            <li class="list-group-item px-0" *ngFor="let price of prices; let i=index;" >
+              <div class="row px-1 align-items-center">
+                <div class="col-10 ml--2">
+                  <h5 class="mb-0"><b>Precio especial en el servicio: </b> {{price.name}}</h5>
+                  <h5 class="mb-0"><b>Porcentaje de descuento: </b> {{price.price}}%</h5>
+                </div>
+              </div> 
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,36 @@
+<div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+      <tr>
+        <th>Imagenes</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Descripción</th>
+        <th>Stock disponible</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; let i=index;">
+            <td class="table-actions text-center">
+                <span (click)="selectProduct(i)" class="table-action table-action-success" data-target="#ProductDetails" data-toggle="modal">
+                    <i data-toggle="tooltip" title="Ver Reservaciones" class="fas fa-image product-see"></i>
+                </span>
+            </td>
+        <td>
+          <b>{{product.name}}</b>
+        </td>
+        <td>
+          {{product.price}}
+        </td>
+        <td>
+          {{product.description}}
+        </td>
+        <td>
+          {{product.stock}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<product-details [product]="selectedProduct" ></product-details>

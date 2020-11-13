@@ -1,0 +1,231 @@
+<app-layout>
+  <div slot="header" class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2 text-white d-inline-block mb-0">Inicio</h6>
+            <nav
+              aria-label="breadcrumb"
+              class="d-none d-md-inline-block ml-md-4"
+            >
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item">
+                  <a href="#"><i class="fas fa-home"></i></a>
+                </li>
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Inicio
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div slot="content" class="container-fluid mt--6">
+    
+    <!--
+      <div class="row">
+      <div class="col-12">
+        <div class="card" *ngIf="!isWorker">
+          <div class="card-header">
+            <h5 class="h3 mb-0">Personal añadido recientemente</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush list my--3">
+              <li *ngFor="let member of members" class="list-group-item px-0">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <a href="#" class="avatar rounded-circle">
+                      <img
+                        class="avatar-img"
+                        alt="Image placeholder"
+                        src="../../assets/img/default/user.png"
+                      />
+                    </a>
+                  </div>
+                  <div class="col ml--2">
+                    <h4 class="mb-0">
+                      {{ member.name + " " + member.last_name }}
+                    </h4>
+                    <span class="text-success">●</span>
+                    <small>{{ member.area_name }}</small>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <a [routerLink]="['/personal-add']" class="btn btn-primary mt-4"
+              >Agregar</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="card" *ngIf="!isWorker">
+          <!-- Card header -->
+          <div class="card-header">
+            <!-- Title -->
+            <h5 class="h3 mb-0">Reservas Recientes en Nutrición</h5>
+          </div>
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="chart-container">
+              <!-- List group -->
+              <canvas id="grafica-nutricion"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card" *ngIf="!isWorker">
+          <!-- Card header -->
+          <div class="card-header">
+            <!-- Title -->
+            <h5 class="h3 mb-0">Reservas Recientes en Láser Clínic</h5>
+          </div>
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="chart-container">
+              <!-- List group -->
+              <canvas id="grafica-laser-clinic"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6" *ngIf="!isWorker">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header">
+            <!-- Title -->
+            <h5 class="h3 mb-0">Ventas totales en Nutrición ($)</h5>
+          </div>
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="chart-container">
+              <!-- List group -->
+              <canvas id="grafica-nutricion-ventas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6" *ngIf="!isWorker">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header">
+            <!-- Title -->
+            <h5 class="h3 mb-0">Ventas totales en Láser Clínic ($)</h5>
+          </div>
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="chart-container">
+              <!-- List group -->
+              <canvas id="grafica-laser-clinic-ventas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6" *ngIf="!isWorker">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header">
+            <!-- Title -->
+            <h5 class="h3 mb-0">Ventas totales en Nutrición por Personal ($)</h5>
+          </div>
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="chart-container">
+              <!-- List group -->
+              <canvas id="grafica-nutricion-ventas-personal"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6" *ngIf="!isWorker">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header">
+            <!-- Title -->
+            <h5 class="h3 mb-0">Ventas totales en Láser Clínic por Personal ($)</h5>
+          </div>
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="chart-container">
+              <!-- List group -->
+              <canvas id="grafica-laser-clinic-ventas-personal"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-12 col-md-6" *ngIf="isWorker">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header">
+            <!-- Title -->
+            <h5 class="h3 mb-0">Tus Reservas Recientes</h5>
+          </div>
+          <!-- Card body -->
+          <div class="card-body">
+            <div class="chart-container">
+              <!-- List group -->
+              <canvas id="grafica-reservas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-12 col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="h3 mb-0">Reservas Confirmadas</h5>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="grafica-reservas-confirmadas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="h3 mb-0">Reservas Canceladas</h5>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="grafica-reservas-canceladas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6" *ngIf="isWorker">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="h3 mb-0">Tus ventas totales($)</h5>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="grafica-tus-ventas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+</app-layout>

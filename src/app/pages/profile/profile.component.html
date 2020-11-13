@@ -1,0 +1,93 @@
+<app-layout>
+
+    <div slot="header" class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Perfil</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="#"><i class="fa fa-user"></i></a></li>
+                  <li class="breadcrumb-item"><a href="#">Perfil de usuario</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Editar datos</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div slot="content" class="container-fluid mt--6">
+        <div class="row">
+            <div class="col-12">
+              <div class="card-wrapper">
+                <!-- Form controls -->
+                <div class="card">
+                  <!-- Card header -->
+                  <div class="card-header">
+                    <h3 class="mb-0">Edite los datos a mostrar en su perfil</h3>
+                  </div>
+                  <!-- Card body -->
+                  <div class="card-body">
+                    <div class="row justify-content-center py-4">
+                        <label for="submitImage">
+                            <img [src]="getImage()" class="img-profile-round rounded-circle">
+                        </label>
+                        <input class="d-none" type="file" id="submitImage" (change)="onImageChange($event.target.files)" >
+                    </div>
+                    <form>
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label class="form-control-label">Nombre</label>
+                            <input [(ngModel)]="name" name="name" type="text" class="form-control" placeholder="Nombre">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label class="form-control-label">Apellido</label>
+                            <input [(ngModel)]="last_name" name="last_name" type="text" class="form-control" placeholder="Apellido">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label">Género</label>
+                              <select [(ngModel)]="gender" name="gender" class="form-control">
+                                <option value="male" >Hombre</option>
+                                <option value="female" >Mujer</option>
+                              </select>
+                            </div>  
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label class="form-control-label">Teléfono</label>
+                            <input [(ngModel)]="phone" name="phone" type="text" class="form-control" placeholder="+12345678">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label class="form-control-label">Cuenta de Instagram</label>
+                            <input [(ngModel)]="instagram" name="instagram" type="text" class="form-control" placeholder="Ej: cuenta_de.instagram">
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label class="form-control-label">Descripción</label>
+                            <input [(ngModel)]="description" name="description" type="text" class="form-control" placeholder="Descripción Extendida">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <button (click)="submitUpload()" class="btn btn-primary mt-4">Guardar Cambios</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+    </div>
+</app-layout>

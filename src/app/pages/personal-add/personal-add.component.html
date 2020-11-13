@@ -1,0 +1,205 @@
+<app-layout>
+  <div slot="header" class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <h6 class="h2 text-white d-inline-block mb-0">Agregar</h6>
+            <nav
+              aria-label="breadcrumb"
+              class="d-none d-md-inline-block ml-md-4"
+            >
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item">
+                  <a href="#"><i class="ni ni-ungroup"></i></a>
+                </li>
+                <li class="breadcrumb-item"><a href="#">Personal</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Agregar Personal
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div slot="content" class="container-fluid mt--6">
+    <div class="row">
+      <div class="col-12">
+        <div class="card-wrapper">
+          <!-- Form controls -->
+          <div class="card">
+            <!-- Card header -->
+            <div class="card-header">
+              <h3 class="mb-0">Agregar Personal</h3>
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+              <form [formGroup]="addPersonal" autocomplete="off">
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Nombre</label>
+                      <input
+                        formControlName="name"
+                        type="text"
+                        class="form-control"
+                        placeholder="Nombre"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Apellido</label>
+                      <input
+                        formControlName="last_name"
+                        type="text"
+                        class="form-control"
+                        placeholder="Apellido"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label"
+                        >Correo Electrónico</label
+                      >
+                      <input
+                        formControlName="email"
+                        type="email"
+                        class="form-control"
+                        placeholder="name@example.com"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Teléfono</label>
+                      <input
+                        formControlName="phone"
+                        type="text"
+                        class="form-control"
+                        placeholder="+12345678"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Contraseña</label>
+                      <input
+                        formControlName="password"
+                        type="password"
+                        class="form-control"
+                        placeholder="contraseña"
+                        autocomplete="new-password"
+                      />
+
+                      <ng-container
+                        *ngIf="
+                          password.invalid &&
+                          (password.dirty || password.touched)
+                        "
+                      >
+                        <div *ngIf="password.errors.minLength">
+                          se necesita un minimo de 6 caracteres
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label"
+                        >Confirmar contraseña</label
+                      >
+                      <input
+                        formControlName="password_confirmation"
+                        type="password"
+                        class="form-control"
+                        placeholder="Confirmar contraseña"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Dirección</label>
+                      <input
+                        formControlName="address"
+                        type="text"
+                        class="form-control"
+                        placeholder="Ej: calle ###, avenida ###"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label"
+                        >Fecha de nacimiento</label
+                      >
+                      <input
+                        formControlName="birthday"
+                        class="form-control datepicker"
+                        id="age-datepicker"
+                        placeholder="Seleccione una fecha"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Género</label>
+                      <select formControlName="gender" class="form-control">
+                        <option value="male">Hombre</option>
+                        <option value="female">Mujer</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <label class="form-control-label">Área de trabajo</label>
+                      <select formControlName="area" class="form-control">
+                        <option
+                          *ngFor="let area of areas"
+                          [ngValue]="area.id"
+                          >{{ area.name }}</option
+                        >
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Descripción</label>
+                      <textarea formControlName="description" type="text" class="form-control" placeholder="Acerca de ti..." rows="3" ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Cuenta de instagram</label>
+                      <input formControlName="instagram" class="form-control" placeholder="Ej: am_salud_cuenta">                              
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <button (click)="register()" class="btn btn-primary mt-4">
+                Agregar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-layout>

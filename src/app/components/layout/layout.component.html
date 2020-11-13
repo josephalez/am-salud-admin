@@ -1,0 +1,314 @@
+<nav
+  class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-dark border-0"
+  id="sidenav-main"
+>
+  <div class="scrollbar-inner">
+    <div class="navbar-inner border-0">
+      <!-- Collapse -->
+      <img
+        src="../../assets/img/logo/logoBlancoAMsalud.png"
+        class="navbar-logo pt-5 pb-4"
+        alt="..."
+      />
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Nav items -->
+        <ul class="navbar-nav">
+          <li class="nav-item" *ngIf="!isWorker" >
+            <a [routerLink]="['/nosotros']" class="nav-link text-light">
+              <i class="fas fa-users"></i>
+              <span class="nav-link-text">Nosotros</span>
+            </a>
+          </li>
+          <li *ngIf="!isWorker&&!isAtencion" class="nav-item">
+            <a [routerLink]="['/services']" class="nav-link text-light">
+              <i class="ni ni-shop "></i>
+              <span class="nav-link-text">Servicios</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="!isWorker&&!isAtencion" >
+            <a [routerLink]="['/prices']" class="nav-link text-light">
+              <i class="fas fa-tag"></i>
+              <span class="nav-link-text">Precios Especiales</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="!isWorker" >
+            <a [routerLink]="['/users']" class="nav-link text-light">
+              <i class="fas fa-users"></i>
+              <span class="nav-link-text">Clientes</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="!isWorker" >
+            <a [routerLink]="['/pedidos']" class="nav-link text-light">
+              <i class="fas fa-cubes"></i>
+              <span class="nav-link-text">Pedidos</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="!isWorker" >
+            <a [routerLink]="['/credits']" class="nav-link text-light">
+              <i class="fas fa-dollar-sign"></i>
+              <span class="nav-link-text">Añadir Créditos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link text-light"
+              href="#navbar-dashboards"
+              data-toggle="collapse"
+              role="button"
+              aria-expanded="false"
+              aria-controls="navbar-dashboards"
+            >
+              <i class="fas fa-home "></i>
+              <span class="nav-link-text">Dashboard</span>
+            </a>
+            <div class="collapse" id="navbar-dashboards">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a [routerLink]="['/home']" class="nav-link text-light"
+                    >Inicio</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li *ngIf="!isWorker" class="nav-item">
+            <a
+              class="nav-link text-light"
+              href="#navbar-examples"
+              data-toggle="collapse"
+              role="button"
+              aria-expanded="false"
+              aria-controls="navbar-examples"
+            >
+              <i class="ni ni-ungroup "></i>
+              <span class="nav-link-text">Personal</span>
+            </a>
+            <div class="collapse" id="navbar-examples">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a
+                    [routerLink]="['/personal-add']"
+                    class="nav-link text-light"
+                    >Añadir Personal</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    [routerLink]="['/workers-edit']"
+                    class="nav-link text-light"
+                    >Editar Personal</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/workers']" class="nav-link text-light"
+                    >Lista Personal</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li *ngIf="isWorker" class="nav-item">
+            <a [routerLink]="['/schedule']" class="nav-link text-light">
+              <i class="fas fa-calendar "></i>
+              <span class="nav-link-text">Horario</span>
+            </a>
+          </li>
+          <li *ngIf="isWorker" class="nav-item">
+            <a [routerLink]="['/profile']" class="nav-link text-light">
+              <i class="fas fa-user "></i>
+              <span class="nav-link-text">Mi Perfil</span>
+            </a>
+          </li>
+          <li *ngIf="isWorker" class="nav-item">
+            <a [routerLink]="['/expedients']" class="nav-link text-light">
+              <i class="fas fa-clipboard "></i>
+              <span class="nav-link-text">Mis expedientes</span>
+            </a>
+          </li>
+          <li *ngIf="isWorker" class="nav-item">
+            <a [routerLink]="['/assistance']" class="nav-link text-light">
+              <i class="fas fa-clipboard "></i>
+              <span class="nav-link-text">Sesiones confirmadas</span>
+            </a>
+          </li>
+          <li *ngIf="isWorker" class="nav-item">
+            <a [routerLink]="['/sessions']" class="nav-link text-light">
+              <i class="fas fa-clipboard "></i>
+              <span class="nav-link-text">Solicitudes</span>
+            </a>
+          </li>
+          <li *ngIf="isWorker" class="nav-item">
+            <a [routerLink]="['/my-reservations']" class="nav-link text-light">
+              <i class="fas fa-list-alt "></i>
+              <span class="nav-link-text">Mis Reservas</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link text-light"
+              href="#laser-dashboards"
+              data-toggle="collapse"
+              role="button"
+              aria-expanded="false"
+              aria-controls="laser-dashboards"
+              *ngIf="!isWorker"
+            >
+              <span class="nav-link-text">LÁSER CLINIC</span>
+            </a>
+            <div class="collapse" id="laser-dashboards">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a [routerLink]="['/laser-zones']" class="nav-link text-light"
+                    >Zonas de depilación</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/personal-list', {service:2,title:'Láser Clinic'}]" class="nav-link text-light"
+                    >Personal</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/expedients', {service:2,title:'Láser Clinic'}]" class="nav-link text-light"
+                    >Expedientes</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/assistance', {service:2,title:'Láser Clinic'}]" class="nav-link text-light"
+                    >Sesiones confirmadas</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/sessions', {service:2,title:'Láser Clinic'}]" class="nav-link text-light"
+                    >Solicitudes</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link text-light"
+              href="#nutricion-dashboards"
+              data-toggle="collapse"
+              role="button"
+              aria-expanded="false"
+              aria-controls="nutricion-dashboards"
+              *ngIf="!isWorker"
+            >
+              <span class="nav-link-text">NUTRICIÓN</span>
+            </a>
+            <div class="collapse" id="nutricion-dashboards">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a [routerLink]="['/personal-list', {service:1,title:'Nutrición'}]" class="nav-link text-light"
+                    >Personal</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/expedients', {service:1,title:'Nutrición'}]" class="nav-link text-light"
+                    >Expedientes</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/assistance', {service:1,title:'Nutrición'}]" class="nav-link text-light"
+                    >Asistencias</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/sessions', {service:1,title:'Nutrición'}]" class="nav-link text-light"
+                    >Sesiones Activas</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link text-light"
+              href="#tienda-dashboards"
+              data-toggle="collapse"
+              role="button"
+              aria-expanded="false"
+              aria-controls="tienda-dashboards"
+              *ngIf="!isWorker"
+            >
+              <span class="nav-link-text">TIENDA</span>
+            </a>
+            <div class="collapse" id="tienda-dashboards">
+              <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                  <a [routerLink]="['/products']" class="nav-link text-light"
+                    >Productos</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a [routerLink]="['/categories']" class="nav-link text-light"
+                    >Categorías</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item"
+            *ngIf="!isWorker"          
+          >
+            <a [routerLink]="['/paquetes']" class="nav-link text-light">
+              <i class="fas fa-cubes"></i>
+              <span class="nav-link-text">Paquetes virutales</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- Main content -->
+<div class="main-content" id="panel">
+  <!-- Topnav -->
+  <nav
+    class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom"
+  >
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar links -->
+        <ul class="navbar-nav align-items-center ml-auto">
+          <li class="nav-item">
+            <!-- Sidenav toggler -->
+            <div
+              class="pr-3 sidenav-toggler sidenav-toggler-dark d-xl-none"
+              data-action="sidenav-pin"
+              data-target="#sidenav-main"
+            >
+              <div class="sidenav-toggler-inner">
+                <i class="sidenav-toggler-line"></i>
+                <i class="sidenav-toggler-line"></i>
+                <i class="sidenav-toggler-line"></i>
+              </div>
+            </div>
+            <div
+              class="pr-3 sidenav-toggler sidenav-toggler-dark d-none d-xl-block"
+              data-action="sidenav-unpin"
+              data-target="#sidenav-main"
+            >
+              <div class="sidenav-toggler-inner">
+                <i class="sidenav-toggler-line"></i>
+                <i class="sidenav-toggler-line"></i>
+                <i class="sidenav-toggler-line"></i>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <div (click)="logout()" class="nav-link text-light">
+              <i class="ni ni-button-power"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Header -->
+  <!-- Header -->
+  <ng-content select="[slot=header]"></ng-content>
+  <!-- Page content -->
+  <ng-content select="[slot=content]"></ng-content>
+</div>

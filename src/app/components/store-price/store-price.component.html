@@ -1,0 +1,60 @@
+<div class="modal fade" id="storePrice" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header align-items-center">
+          <h5 class="modal-title">Nuevo Precio especial</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="priceForm" >
+
+            <div class="col-12">
+                <div (click)="setMode(true)" class="custom-control custom-checkbox mb-3">
+                  <input [checked]="is_user" type="checkbox" class="custom-control-input">
+                  <label class="custom-control-label">Asignar a usuario</label>
+                </div>    
+            </div>
+
+            <div class="col-12">
+                <div (click)="setMode()" class="custom-control custom-checkbox mb-3">
+                  <input [checked]="is_general" type="checkbox" class="custom-control-input">
+                  <label class="custom-control-label">Asignar en general</label>
+                </div>    
+            </div>
+
+            <div class="col-12" *ngIf="is_user" >
+                <div class="form-group">
+                  <label>Seleccione el usuario:</label>
+                  <select formControlName="user" class="form-control" placeholder="Seleccionar">
+                      <option *ngFor="let user of users;" [value]="user.id" >{{user.name+' '+user.last_name}}</option>
+                  </select>
+                </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="form-control-label">Porcentaje a asignar (%)</label>
+                <input formControlName="price" type="number" min="0" max="100" oninput="validity.valid||(value='');" class="form-control" placeholder="100%">
+              </div>
+            </div>
+
+            <div class="col-12" *ngIf="!isWorker">
+              <div class="form-group">
+                <label>Servicio</label>
+                <select formControlName="service" class="form-control">
+                    <option *ngFor="let service of services;" [value]="service.id" >{{service.name}}</option>
+                </select>
+              </div>
+            </div>
+            
+          </form>          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="storePrice()" class="btn btn-primary" data-dismiss="modal">Añadir Precio especial</button>
+        </div>
+      </div>
+    </div>
+  </div>

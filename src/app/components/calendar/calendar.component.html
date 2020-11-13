@@ -1,0 +1,41 @@
+<div class="calendar-container container">
+  <!-- Calendar -->
+  <div class="d-flex flex-wrap align-items-center px-2">
+    <i class="fa fa-calendar fa-2x mr-3"></i>
+    <h3 class="month font-weight-bold mb-0 text-uppercase">{{currentMonth}} {{currentYear}}</h3>
+    <button (click)="backMonth()" class="btn btn-icon btn-primary ml-auto" type="button">
+      <span class="btn-inner--icon"><i class="fas fa-arrow-left"></i></span>
+    </button>
+    <button (click)="nextMonth()" class="btn btn-icon btn-primary" type="button">
+      <span class="btn-inner--icon"><i class="fas fa-arrow-right"></i></span>
+    </button>
+  </div>
+  <div class="row col-12">
+    <div class="calendar shadow bg-white p-3">
+      <ol class="day-names list-unstyled">
+        <li class="font-weight-bold text-uppercase">Lun</li>
+        <li class="font-weight-bold text-uppercase">Mar</li>
+        <li class="font-weight-bold text-uppercase">Mié</li>
+        <li class="font-weight-bold text-uppercase">Jue</li>
+        <li class="font-weight-bold text-uppercase">Vie</li>
+        <li class="font-weight-bold text-uppercase">Sáb</li>
+        <li class="font-weight-bold text-uppercase">Dom</li>
+      </ol>
+  
+      <ol class="days list-unstyled">
+        <li class="outside" *ngFor="let initDayOf of initDaysOff;">
+          <div class="date">{{initDayOf.format('D')}}</div>
+        </li>
+        <li *ngFor="let day of days; let i=index;" [ngClass]="{'with-event':getEventLabel(i)}" 
+        data-toggle="modal" data-target="#eventsListModal" (click)="selectEvent(i)" >
+          <div class="date" >{{day.format('D')}}</div>
+        </li>
+        <li class="outside" *ngFor="let lastDayOff of lastDaysOff;">
+          <div class="date">{{lastDayOff.format('D')}}</div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<events-list (refresh)="refreshData()" [events]="selectedEvents" ></events-list>

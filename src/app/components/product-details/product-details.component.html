@@ -1,0 +1,22 @@
+<div class="modal fade" id="ProductDetails" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header align-items-center">
+        <h5 class="modal-title">Imagenes del producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="product" class="w-100 d-flex flex-column align-items-center">
+          <img class="img-fluid my-3" *ngIf="product.main_picture" [src]="product.main_picture" alt="product_image">
+          <img class="img-fluid my-3" *ngIf="product.picture_uno" [src]="product.picture_uno" alt="product_image">
+          <img class="img-fluid my-3" *ngIf="product.picture_dos" [src]="product.picture_dos" alt="product_image">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary mr-2" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div> 

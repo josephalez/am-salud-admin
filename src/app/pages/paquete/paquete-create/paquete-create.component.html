@@ -1,0 +1,105 @@
+<div
+  class="modal fade"
+  id="storeLaserZone"
+  tabindex="-1"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header align-items-center">
+        <h5 class="modal-title">Nuevo paquete</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form [formGroup]="laserZone" (ngSubmit)="enviar()">
+        <div class="modal-body">
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-control-label">Nombre</label>
+              <input
+                formControlName="nombre"
+                type="text"
+                class="form-control"
+                placeholder="Nombre"
+              />
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-control-label">precio del paquete </label>
+              <input
+                formControlName="points"
+                type="number"
+                class="form-control"
+                placeholder="precio del paquete"
+              />
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-control-label">Porcentaje de bonificación (%)</label>
+              <input 
+                formControlName="bonus" 
+                type="number" 
+                min="0" 
+                max="100" 
+                oninput="validity.valid||(value='');" 
+                class="form-control" 
+                placeholder="100%"
+              >
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-control-label">Saldo total del paquete</label>
+              <input
+                type="text"
+                readonly
+                class="form-control"
+                [value]="laserZone.value.points+(laserZone.value.points*(laserZone.value.bonus/100))"
+              />
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-control-label">Moneda virtual</label>
+              <select formControlName="credit_id" class="form-control">
+                <option
+                  *ngFor="let moneda of monedas; let i = index"
+                  [value]="moneda.id"
+                >
+                  {{ moneda.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cerrar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            data-dismiss="modal"
+            [disabled]="!laserZone.valid"
+            (click)="enviar()"
+          >
+            Añadir Paquete
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

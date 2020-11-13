@@ -1,0 +1,12 @@
+.img-profile-round{
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    transition: all .15s ease;
+    border: 3px solid #ddd;
+}
+
+.img-profile-round:hover{
+    transform: scale(1.1);
+}

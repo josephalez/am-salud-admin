@@ -1,0 +1,41 @@
+<div class="table-responsive">
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr>
+          <th>Reservas</th>
+          <th *ngIf="assistance">Cantidad</th>
+          <th>Usuario</th>
+          <th>Correo Electrónico</th>
+          <th>Género</th>
+          <th>Número telefónico</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i=index;">
+          <td class="table-actions text-center">
+              <span (click)="selectUser(i)" class="table-action table-action-info" data-target="#reservationsListModal" data-toggle="modal">
+                  <i data-toggle="tooltip" title="Ver Reservaciones" class="fas fa-eye"></i>
+              </span>
+          </td>
+          <td *ngIf="assistance">
+             {{user.reservations.length}} 
+          </td>
+          <td class="table-user">
+            <img [src]="getImage(i)" class="avatar rounded-circle mr-3">
+            <b>{{user.name+' '+user.last_name}}</b>
+          </td>
+          <td>
+            {{user.email}}
+          </td>
+          <td>
+            {{user.gender=='male'?"Masculino":user.gender=='female'?'Femenino':'Indefinido'}}
+          </td>
+          <td>
+            {{user.phone}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <reservations-list [isSession]="isSession" [isExpedient]="isExpedient" [reservations]="selectedReservations" (refresh)="emitReload()" ></reservations-list>

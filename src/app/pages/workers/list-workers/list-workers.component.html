@@ -1,0 +1,49 @@
+<div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+      <tr>
+        <th></th>
+        <th>Area</th>
+        <th>Nombre Completo</th>
+        <th>Correo Electrónico</th>
+        <th>Género</th>
+        <th>Número telefónico</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td class="table-actions">
+          <span
+            (click)="delete(user.id)"
+            class="table-action table-action-delete"
+            data-toggle="tooltip"
+            title="Eliminar Usuario"
+          >
+            <i class="fas fa-trash"></i>
+          </span>
+        </td>
+        <td class="table-user">
+          <b>{{ user.area }}</b>
+        </td>
+        <td>
+          <b>{{ user.name + " " + user.last_name }}</b>
+        </td>
+        <td>
+          {{ user.email }}
+        </td>
+        <td>
+          {{
+            user.gender == "male"
+              ? "Masculino"
+              : user.gender == "female"
+              ? "Femenino"
+              : "Indefinido"
+          }}
+        </td>
+        <td>
+          {{ user.phone }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

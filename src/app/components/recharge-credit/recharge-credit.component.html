@@ -1,0 +1,57 @@
+<!--Change-->
+<div class="modal fade" id="rechargeCredit" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header align-items-center">
+        <h5 class="modal-title">Recarga manual de saldo al usuario {{username}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="balanceForm" >
+
+          <div class="col-12">
+            <div class="form-group">
+              <label>Tipo de crédito</label>
+              <select (change)="getPaquetes($event.target.value)" formControlName="credit_id" class="form-control">
+                  <option selected value="" hidden>Seleccione un tipo de crédito</option>
+                  <option *ngFor="let credit of credits;" [value]="credit.id" >{{credit.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label>Seleccione un paquete</label>
+              <select formControlName="paquete_id" (change)="changePaquete($event.target.value)" name="paquete" class="form-control">
+                  <option selected value="" hidden>Seleccione el paquete correspondiente</option>
+                  <option *ngFor="let paquete of paquetes; let i=index;" [value]="i" >{{paquete.nombre}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-control-label">Monto</label>
+              <input formControlName="monto" type="number" class="form-control" disabled>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-control-label">Monto + Bonificación</label>
+              <input formControlName="saldo" type="number" class="form-control" disabled>
+            </div>
+          </div>
+          
+        </form>          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" (click)="storeBalance()" class="btn btn-primary" data-dismiss="modal">Añadir Paquete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Change/-->

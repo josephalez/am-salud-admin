@@ -1,0 +1,117 @@
+<div
+  class="modal fade"
+  id="reservationsListModal"
+  tabindex="-1"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header align-items-center">
+        <h5 class="modal-title">Citas agendadas por este Usuario</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group list-group-flush list my--3">
+          <li
+            class="list-group-item px-0"
+            *ngFor="let reservation of reservations; let i = index"
+          >
+            <div class="row px-1 align-items-center">
+              <div class="col-auto">
+                <div class="avatar rounded-circle">
+                  <img
+                    class="avatar-img"
+                    alt="Perfil Usuario"
+                    [src]="getProfilePic(i)"
+                  />
+                </div>
+              </div>
+              <div class="col-10 ml--2">
+                <h5 class="mb-0"><b>Con: </b> {{ reservation.full_name }}</h5>
+                <h5 class="mb-0"><b>Hora: </b> {{ parseHour(i) }}</h5>
+                <h5 class="mb-0"><b>Estado: </b>
+                  <span
+                  [ngClass]="{
+                    'text-success':
+                    reservation.status=='pagada',
+                    'text-danger':
+                    reservation.status=='cancelada',
+                    'text-info':
+                    reservation.status=='pendiente'||reservation.status=='reagendada'
+                  }"
+                  >● {{reservation.status}}
+                  </span>
+                </h5>
+              </div>
+              <div class="col-auto py-2">
+                <button
+                  *ngIf="
+                    reservation.status=='pendiente'||reservation.status=='reagendada'                
+                  "
+                  data-dismiss="modal"
+                  type="button"
+                  (click)="cancel(i)"
+                  class="btn btn-sm btn-primary"
+                >
+                  Cancelar
+                </button>
+                <button
+                  *ngIf="
+                    reservation.status=='pendiente'||reservation.status=='reagendada'
+                  "
+                  data-dismiss="modal"
+                  type="button"
+                  (click)="confirm(i)"
+                  class="btn btn-sm btn-success"
+                >
+                  Confirmar
+                </button>
+                <button
+                  *ngIf="reservation.servicio_id == 2"
+                  data-toggle="modal"
+                  data-target="#rembolso"
+                  (click)="select(i)"
+                  type="button"
+                  class="btn btn-sm btn-info"
+                >
+                  Editar
+                </button>
+                <button
+                  *ngIf="reservation.servicio_id == 2&&reservation.laser_form&&isExpedient"
+                  data-toggle="modal"
+                  data-target="#laserFormDetails"
+                  (click)="select(i)"
+                  type="button"
+                  class="btn btn-sm btn-default"
+                >
+                  Detalles
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          data-dismiss="modal"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-detailed-form *ngIf="selectedReservation&&selectedReservation.laser_form" [laserForm]="selectedReservation.laser_form" ></app-detailed-form>
+
+<app-rembolso [reservation]="selectedReservation" (reload)="emitReload()" ></app-rembolso>

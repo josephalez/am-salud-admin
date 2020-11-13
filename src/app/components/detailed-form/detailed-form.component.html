@@ -1,0 +1,49 @@
+<div class="modal fade" id="laserFormDetails" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" *ngIf="laserForm">
+      <div class="modal-header align-items-center pb-0">
+        <h5 class="modal-title">Detalles adicionales de la reserva</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="h3 title mb-0 pb-2">
+          <span class="d-block mb-1">¿Ha estado expuesto/a al sol últimamente?</span>
+          <small class="font-weight-light" >{{laserForm.sun!=0?"Sí":"No"}}</small>
+        </h5>
+        <h5 class="h3 title mb-0 pb-2">
+          <span class="d-block mb-1">¿Se encuentra en tratamiento médico?</span>
+          <small class="font-weight-light" >{{laserForm.medical!=0?"Sí":"No"}}</small>
+        </h5>
+        <h5 class="h3 title mb-0 pb-2">
+          <span class="d-block mb-1">¿Ha estado expuesto/a a terapia laser o radiación últimamente?</span>
+          <small class="font-weight-light" >{{laserForm.radiation!=0?"Sí":"No"}}</small>
+        </h5>
+        <h5 class="h3 title mb-0 pb-2">
+          <span class="d-block mb-1">¿Posee piel sensible o se lesiona con facilidad?</span>
+          <small class="font-weight-light" >{{laserForm.sensible_skin!=0?"Sí":"No"}}</small>
+        </h5>
+        <h5 class="h3 title mb-0 pb-2">
+          <span class="d-block mb-1">¿Ha estado recibiendo tratamiento hormonal últimamente?</span>
+          <small class="font-weight-light" >{{laserForm.hormonal!=0?"Sí":"No"}}</small>
+        </h5>
+        <h5 class="h3 title mb-0 pb-2">
+          <span class="d-block mb-1">¿Ha estado usando productos externos en el área últimamente (implante, tatuaje, maquillaje, desodorante, perfume, entre otros.)?</span>
+          <small class="font-weight-light" >{{laserForm.external_product!=0?"Sí":"No"}}</small>
+        </h5>
+        <h5 class="h3 title mb-0 pb-2">
+          <span class="d-block mb-1">¿Ha estado menstruando últimamente?</span>
+          <small class="font-weight-light" >{{laserForm.menstruation!=0?"Sí":"No"}}</small>
+        </h5>
+        <h5 class="h3 title mb-0 pb-2">
+            <span class="d-block mb-1">¿Cuándo depiló las zonas a tratar por última vez?</span>
+            <small class="font-weight-light" >{{getParsedDate(laserForm.date)}}</small>
+          </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
